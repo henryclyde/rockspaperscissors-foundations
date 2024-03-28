@@ -3,12 +3,31 @@ let computerChoice = "";
 
 const choices = document.querySelector("#choices");
 const results = document.querySelector("#results");
+const resultsP = document.createElement('p');
+
 const btnRock = document.createElement('button');
 btnRock.textContent = "ROCK";
 const btnPaper = document.createElement('button');
 btnPaper.textContent = "PAPER";
 const btnScissor = document.createElement('button');
 btnScissor.textContent = "SCISSOR";
+
+const score = document.createElement('div');
+const scoreHead = document.createElement('h3');
+const scoreNumber = document.createElement('p');
+
+let userScore = 0;
+let computerScore = 0;
+
+
+scoreHead.textContent = "Scoreboard";
+score.appendChild(scoreHead);
+score.appendChild(scoreNumber);
+results.appendChild(resultsP);
+results.appendChild(score);
+
+
+
 
 btnRock.addEventListener("click", () => {
     userChoice = "rock";
@@ -45,37 +64,45 @@ function playRound() {
     computerChoice = getComputerChoice();
     if (userChoice == "rock") {
         if (computerChoice == "rock") {
-            results.textContent = "It's a tie!";
+            resultsP.textContent = "It's a tie!";
         }
         else if (computerChoice == "paper") {
-            results.textContent = "You lose! Paper beats rock!";
+            resultsP.textContent = "You lose! Paper beats rock!";
+            computerScore++;
         }
         else {
-            results.textContent = "You win!, Rock beats scissors!";
+            resultsP.textContent = "You win!, Rock beats scissors!";
+            userScore++;
         }        
     }
     else if (userChoice == "paper") {
         if (computerChoice == "paper") {
-            results.textContent = "It's a tie!";
+            resultsP.textContent = "It's a tie!";
         }
         else if (computerChoice == "rock") {
-            results.textContent = "You win! Paper beats rock!";
+            resultsP.textContent = "You win! Paper beats rock!";
+            userScore++;
         }
         else {
-            results.textContent = "You lose!, Scissors beats paper!";
+            resultsP.textContent = "You lose!, Scissors beats paper!";
+            computerScore++;
         } 
     }
     else {
         if (computerChoice == "rock") {
-            results.textContent = "You lose! Paper beats rock!";
+            resultsP.textContent = "You lose! Paper beats rock!";
+            computerScore++;
         }
         else if (computerChoice == "paper") {
-            results.textContent = "You win!, Scissors beats paper!";
+            resultsP.textContent = "You win!, Scissors beats paper!";
+            userScore++;
         }
         else {
-            results.textContent = "It's a tie!";
+            resultsP.textContent = "It's a tie!";
         } 
     }
+    
+    scoreNumber.textContent = `You: ${userScore}    Computer: ${computerScore}`;
 
 }
 
