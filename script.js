@@ -102,8 +102,19 @@ function playRound() {
         } 
     }
     
-    scoreNumber.textContent = `You: ${userScore}    Computer: ${computerScore}`;
+    if(userScore == 5) {
+        scoreNumber.textContent = "You are the winner!";
+        computerScore = 0;
+        userScore = 0;
+    }
+    else if(computerScore == 5) {
+        scoreNumber.textContent = "You are the winner!";
+        userScore = 0;
+        computerScore = 0;        
+    } else {
+        scoreNumber.textContent = `You: ${userScore} Computer: ${computerScore}`;
 
+    }
 }
 
 // playRound();
