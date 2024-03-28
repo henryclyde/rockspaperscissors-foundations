@@ -1,6 +1,31 @@
 let userChoice = "";
 let computerChoice = "";
 
+const choices = document.querySelector("#choices");
+const results = document.querySelector("#results");
+const btnRock = document.createElement('button');
+btnRock.textContent = "ROCK";
+const btnPaper = document.createElement('button');
+btnPaper.textContent = "PAPER";
+const btnScissor = document.createElement('button');
+btnScissor.textContent = "SCISSOR";
+
+btnRock.addEventListener("click", () => {
+    userChoice = "rock";
+    playRound();
+});
+btnPaper.addEventListener("click", () => {
+    userChoice = "paper";
+    playRound();
+});
+btnScissor.addEventListener("click", () => {
+    userChoice = "scissor";
+    playRound();
+});
+
+choices.appendChild(btnRock);
+choices.appendChild(btnPaper);
+choices.appendChild(btnScissor);
 
 function getComputerChoice() {
     computerChoice = Math.floor(Math.random() * 3); //returns a random number, 0, 1, or 2
@@ -11,54 +36,47 @@ function getComputerChoice() {
         return "paper";
     }
     else {
-        return "scissors"
+        return "scissor";
     }
 }
 
-function getUserChoice() {
-    while (userChoice != "rock" && userChoice != "paper" && userChoice != "scissors") {
-        userChoice = prompt("Do you choose rock, paper, or scissors?");
-    }
-    return userChoice;
-}
 
 function playRound() {
     computerChoice = getComputerChoice();
-    userChoice = getUserChoice();
     if (userChoice == "rock") {
         if (computerChoice == "rock") {
-            alert("It's a tie!");
+            results.textContent = "It's a tie!";
         }
-        if (computerChoice == "paper") {
-            alert("You lose! Paper beats rock!")
+        else if (computerChoice == "paper") {
+            results.textContent = "You lose! Paper beats rock!";
         }
         else {
-            alert("You win!, Rock beats scissors!")
+            results.textContent = "You win!, Rock beats scissors!";
         }        
     }
     else if (userChoice == "paper") {
         if (computerChoice == "paper") {
-            alert("It's a tie!");
+            results.textContent = "It's a tie!";
         }
-        if (computerChoice == "Rock") {
-            alert("You win! Paper beats rock!")
+        else if (computerChoice == "rock") {
+            results.textContent = "You win! Paper beats rock!";
         }
         else {
-            alert("You lose!, Scissors beats paper!")
+            results.textContent = "You lose!, Scissors beats paper!";
         } 
     }
     else {
         if (computerChoice == "rock") {
-            alert("You lose! Paper beats rock!")
+            results.textContent = "You lose! Paper beats rock!";
         }
-        if (computerChoice == "paper") {
-            alert("You win!, Scissors beats paper!")
+        else if (computerChoice == "paper") {
+            results.textContent = "You win!, Scissors beats paper!";
         }
         else {
-            alert("It's a tie!");
+            results.textContent = "It's a tie!";
         } 
     }
 
 }
 
-playRound();
+// playRound();
